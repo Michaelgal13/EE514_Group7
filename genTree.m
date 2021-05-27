@@ -10,7 +10,6 @@ else
     end
     for i = 2^(depth) : 2^(depth + 1)-1
         treeOut = treeOut.addnode(floor(i/2),randEndNode(0.5));
-    end
-    
+    end  
 end
 end
