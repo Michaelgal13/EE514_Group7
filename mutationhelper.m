@@ -10,21 +10,21 @@ else
         loops = 1;
     else
         loops = opts(a(1)+1);
-        loops = str2num(loops);
+        loops = str2double(loops);
     end
     a = find(opts(:) == "MutationDepth");
     if isempty(a)
         mutDepth = 4;
     else
         mutDepth = opts(a(1)+1);
-        mutDepth = str2num(mutDepth);
+        mutDepth = str2double(mutDepth);
     end
     a = find(opts(:) == "MaxSize");
     if isempty(a)
         maxSize = inf;
     else
         maxSize = opts(a(1)+1);
-        maxSize = str2num(maxSize);
+        maxSize = str2double(maxSize);
     end
 end
 for i = 1: loops
@@ -43,7 +43,7 @@ for i = 1: loops
     elseif (deep1-deep2)+newDeep2 > maxSize
         newDeep2 = maxSize - (deep1-deep2);
     end
-    newTree = genTree(newDeep2, []);
+    newTree = genTree(newDeep2, opts);
     par = tree.Parent(val);
     if par == 0
         tree = newTree;
