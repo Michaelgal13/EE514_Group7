@@ -1,8 +1,31 @@
-function endTree = mutationhelper(tree, seed,maxSize, opts)
-if isempty(opts) 
-loops = 1;
+function endTree = mutationhelper(tree, opts)
+if isempty(opts) || (size(opts,2) < 2)
+    loops = 1;
+    mutDepth = 4;
+    maxSize = inf;
 else
-    loops = opts(1);
+    %loops = opts(1);'
+    a = find(opts(:) == "MutationLoops");
+    if isempty(a)
+        loops = 1;
+    else
+        loops = opts(a(1)+1);
+        loops = str2num(loops);
+    end
+    a = find(opts(:) == "MutationDepth");
+    if isempty(a)
+        mutDepth = 4;
+    else
+        mutDepth = opts(a(1)+1);
+        mutDepth = str2num(mutDepth);
+    end
+    a = find(opts(:) == "MaxSize");
+    if isempty(a)
+        maxSize = inf;
+    else
+        maxSize = opts(a(1)+1);
+        maxSize = str2num(maxSize);
+    end
 end
 for i = 1: loops
     val = cast(rand * tree.nnodes() + 1, 'int32');
@@ -14,7 +37,7 @@ for i = 1: loops
     
     deep1 = depth(tree);
     deep2 = depth(tree.subtree(val));
-    newDeep2 = rand * 1/seed;
+    newDeep2 = rand * mutDepth;
     if newDeep2 < 1
         newDeep2 = 1;
     elseif (deep1-deep2)+newDeep2 > maxSize
@@ -28,8 +51,8 @@ for i = 1: loops
         tree=tree.chop(val);
         tree = tree.graft(par, newTree);
     end
-    endTree = tree;
+    % disp(tree.tostring);
 end
-
+endTree = tree;
 
 end

@@ -16,5 +16,4 @@ function strName = parseTree(tree)
     fprintf(fileID, check);
     fprintf(fileID, ";\n");
     fclose(fileID);
-    strName = fullStrName;
 end
