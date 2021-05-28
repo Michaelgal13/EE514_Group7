@@ -5,13 +5,13 @@ if isleaf(tree,1)
 else
     curVal = string(tree.Node(1));
     if curVal == "&+"
-        curString = "plus( ";
+        curString = "plus(";
     elseif curVal == "&*"
-        curString = "times( ";
+        curString = "times(";
     else
-        curString = "error( ";
+        curString = "error(";
     end
     children = getchildren(tree,1);
-    curVal = strcat(curString, parseTreeHelper(tree.subtree(children(1))), ", ", parseTreeHelper(tree.subtree(children(2))),") ");
+    curVal = strcat(curString, parseTreeHelper(tree.subtree(children(1))), ",", parseTreeHelper(tree.subtree(children(2))),")");
     outVal = curVal;
 end

@@ -193,7 +193,19 @@ classdef tree
             n = numel(obj.Parent);
         end
         
-        
+        function n = depth(obj)
+            children = getchildren(obj,1);
+            if isleaf(obj,1)
+                n = 1;
+            else
+                m = zeros(size(children, 1));
+                for i = 1: size(children)
+                    m(i) = depth(obj.subtree(children(i)));
+                end
+            n = 1 + max(m);
+            end
+        end
+
     end
     
     % STATIC METHODS

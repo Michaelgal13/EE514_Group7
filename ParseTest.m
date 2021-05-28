@@ -6,7 +6,7 @@ theta = 1;
 thetadot = 2;
 
 
-tree = genTree(5);
+tree = genTree(5, []);
 outPut = parseTree(tree);
 
 
