@@ -1,3 +1,5 @@
+clc
+clear
 x = 1;
 xdot = 2;
 theta = 1;
