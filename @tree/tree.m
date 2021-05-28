@@ -199,7 +199,7 @@ classdef tree
                 n = 1;
             else
                 m = zeros(size(children, 1));
-                for i = 1: size(children)
+                for i = 1: size(children,2)
                     m(i) = depth(obj.subtree(children(i)));
                 end
             n = 1 + max(m);
