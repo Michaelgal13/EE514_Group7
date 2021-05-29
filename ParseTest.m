@@ -11,10 +11,16 @@ opts = ["MaxSize", 20, "MutationLoops", 2, "MutationDepth", 8,...
 
 tree = genTree(5, opts);
 tree = mutationhelper(tree, opts);
+tree2 = genTree(5, opts);
+[tree, tree2] = crossTrees(tree,tree2, opts);
 disp(tree.tostring);
+disp(tree2.tostring);
 outPut = parseTree(tree);
 
 
 k = feval(outPut, x, xdot, theta,thetadot);
 
+outPut2 = parseTree(tree2);
 
+
+k2 = feval(outPut2, x, xdot, theta,thetadot);
