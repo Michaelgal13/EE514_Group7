@@ -15,7 +15,7 @@ tree2 = genTree(5, opts);
 [newtree, newtree2] = crossTrees(tree,tree2, opts);
 disp(tree.tostring);
 disp(tree2.tostring);
-outPut = parseTree(newtree);
+outPut = parseTree(newtree, ~);
 
 
 k = feval(outPut, x, xdot, theta,thetadot);

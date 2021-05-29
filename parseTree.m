@@ -1,5 +1,5 @@
 %%
-function strName = parseTree(tree)
+function strName = parseTree(tree, filName)
     % DOES NOT WORK IF LOOKING AT THE END DIRECTORY IDFK KNOW WHY BUT DON'T
     % LOOK AT IT. A WATCHED POT NEVER BOILS AND OBSERVER EFFECT AND STUFF
     %passes tree to helper function that returns sting
@@ -11,7 +11,11 @@ function strName = parseTree(tree)
     dirName = "genFiles/";
     %adds MG to function name to ensure it will be valid, also to claim
     %ownership :)
-    strName = strcat("MG", c2);
+    if isempty(filName)
+        strName = strcat("MG", c2);
+    else
+        strName = filName;
+    end
     %creates folder/filename.extension
     fullStrName = strcat(dirName, strName, ".m");
     %opens the new file
