@@ -36,18 +36,17 @@ if mutNum < 0
     mutNum = 0;
 end
 
-for i = 1:population
     for j = 1:population
     [~,I] = min(costs);
-    sortList(i) = trees(I);
+    sortList(j) = trees(I);
     costs(I) = inf;
     end
-end
+
 for i = 1: elite
     treeList(i) = sortList(i);
 end
 for i = 1:repNum
-    b = floor(rand * (population + 1));
+    b = floor(rand^2 * (population + 1));
     if b < 1
         b = 1;
     elseif b > population
@@ -56,13 +55,13 @@ for i = 1:repNum
     treeList(i+elite) = trees(b);
 end
 for i = 1:xOver
-    b = floor(rand * (population + 1));
+    b = floor(rand^2 * (population + 1));
     if b < 1
         b = 1;
     elseif b > population
         b = population;
     end
-    c = floor(rand * (population + 1));
+    c = floor(rand^2 * (population + 1));
     if c < 1
         c = 1;
     elseif c > population

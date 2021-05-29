@@ -5,10 +5,10 @@ close all
 simulinkModel = "SimulinkFblock.slx";
 simTime = 5;
 simFunct = "simFunct";
-generations = 5;
+generations = 20;
 population = 5;
 initDepth = 5;
-opts = ["MaxSize", 20, "MutationLoops", 2, "MutationDepth", 8,...
+opts = ["MaxSize", 30, "MutationLoops", 2, "MutationDepth", 8,...
     "NumberMax", 10, "NumberDelims", 0.5, "OperatorSeed", 0.5,...
     "EndNodeSeed", 0.5, ...
     "StatexSeed", 0.25, "StatexdotSeed", 0.25, "StatethetaSeed", 0.25,...
@@ -36,4 +36,4 @@ result = treeList(I);
 %%
 parseTree(result, simFunct);
 simOut = sim(simulinkModel, simTime);
-y = simOut.yout(1);
+y = simOut.yout(1)^2;
