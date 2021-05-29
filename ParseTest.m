@@ -24,4 +24,4 @@ outPut2 = parseTree(newtree2);
 
 
 k2 = feval(outPut2, x, xdot, theta,thetadot);
-!delGen
+%!delGen
