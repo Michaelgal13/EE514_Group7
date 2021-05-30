@@ -2,7 +2,7 @@ clc
 clear all
 close all
 %%
-simulinkModel = "SimulinkFblock.slx";
+simulinkModel = "untitled.slx";
 simTime = 5;
 simFunct = "simFunct";
 generations = 20;

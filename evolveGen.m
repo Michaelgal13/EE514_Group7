@@ -52,7 +52,7 @@ for i = 1:repNum
     elseif b > population
         b = population;
     end
-    treeList(i+elite) = trees(b);
+    treeList(i+elite) = sortList(b);
 end
 for i = 1:xOver
     b = floor(rand^2 * (population + 1));
@@ -75,7 +75,7 @@ for i = 1:xOver
             c = population;
         end
     end
-    [newTree1, newTree2] = crossTrees(trees(b), trees(c), opts);
+    [newTree1, newTree2] = crossTrees(sortList(b), sortList(c), opts);
     treeList(i+elite+repNum) = newTree1;
     if i + 1<= xOver
         i = i+1;
@@ -83,13 +83,13 @@ for i = 1:xOver
     end
 end
 for i = 1:mutNum
-    b = floor(rand * (population + 1));
+    b = floor(rand^2 * (population + 1));
     if b < 1
         b = 1;
     elseif b > population
         b = population;
     end
-    treeList(i+elite+repNum+xOver) = mutationhelper(trees(b), opts);
+    treeList(i+elite+repNum+xOver) = mutationhelper(sortList(b), opts);
 end    
 
 
