@@ -25,11 +25,13 @@ for i=2:length(t)
     cost =  cost + (x(:,i)'*Q*x(:,i) + u(i)'*R*u(i)).*(t(i)-t(i-1));
 end
 
-% figure(101)
+% figure(201)
 % plot (t,x(1,:))
 % hold on
 % plot (t,x(2,:))
 % plot (t,x(3,:))
 % plot (t,x(4,:))
-% cost
-% cost = y(1)^2;
+% plot (t,u)
+% xlabel ('Time')
+% ylabel ('Magnitude')
+% legend ('Position', 'Velocity', 'Angle', 'Angular Velocity', 'Actuator Effort')

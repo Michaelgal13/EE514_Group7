@@ -70,3 +70,28 @@ parseTree(result, simFunct);
 simOut = sim(simulinkModel, t);
 % simOut = sim(simulinkModel, simTime);
 y = feval(costFunction, simOut);
+
+figure(101)
+subplot(2,3,1)
+plot (t,simOut.xnew.Data(:,1)')
+xlabel ('Time')
+ylabel ('Position')
+subplot(2,3,2)
+plot (t,simOut.xnew.Data(:,2)')
+xlabel ('Time')
+ylabel ('Velocity')
+subplot(2,3,3)
+plot (t,simOut.xnew.Data(:,3)')
+xlabel ('Time')
+ylabel ('Angle')
+subplot(2,3,4)
+plot (t,simOut.xnew.Data(:,4)')
+xlabel ('Time')
+ylabel ('Angular Velocity')
+subplot(2,3,5)
+plot (t,simOut.yout)
+xlabel ('Time')
+ylabel ('Acutator Effort')
+% xlabel ('Time')
+% ylabel ('Magnitude')
+% legend ({'Position', 'Velocity', 'Angle', 'Angular Velocity', 'Actuator Effort'}, 'Location', 'Best') 
