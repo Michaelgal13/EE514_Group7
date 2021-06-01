@@ -3,11 +3,12 @@ clear all
 close all
 %%
 simulinkModel = "untitled.slx";
-simTime = 5;
+simTime = 10;
+t = [0:simTime/1e4:simTime];
 simFunct = "simFunct";
 costFunction = "costFunction";
-generations = 40;
-population = 10;
+generations = 10;
+population = 5;
 initDepth = 5;
 opts = ["MaxSize", 30, "MutationLoops", 2, "MutationDepth", 8,...
     "NumberMax", 10, "NumberDelims", 0.5, "OperatorSeed", 0.5,...
@@ -25,7 +26,8 @@ for i = 1:generations
     for  j = 1:population
         str = parseTree(treeList(j), simFunct);
         try
-        simOut = sim(simulinkModel, simTime);
+        simOut = sim(simulinkModel, t);
+%         simOut = sim(simulinkModel, simTime);
         treeRes(j) = feval(costFunction, simOut);
         catch
         fprintf("ERROR: Setting cost to inf\n");
@@ -65,5 +67,6 @@ result = treeList(I);
 
 %%
 parseTree(result, simFunct);
-simOut = sim(simulinkModel, simTime);
-y = simOut.yout(1)^2;
+simOut = sim(simulinkModel, t);
+% simOut = sim(simulinkModel, simTime);
+y = feval(costFunction, simOut);
