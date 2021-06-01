@@ -23,6 +23,7 @@ end
 for i = 1:generations
     treeRes = zeros(size(treeList,2),1);
     for  j = 1:population
+        str = parseTree(treeList(j), );
         try
         simOut = sim(simulinkModel, simTime);
         treeRes(j) = feval(costFunction, simOut);
@@ -32,8 +33,11 @@ for i = 1:generations
         end
         %str = parseTree(treeList(j), simFunct);
         %simOut = sim(simulinkModel, simTime);
-        treeRes(j) = costFunction(simOut);
+        %treeRes(j) = costFunction(simOut);
         fprintf("Currently: %d out of %d\n", (i-1)*population + j, (generations)*population);
+        figure (1)
+        scatter(i, treeRes(j), 'b')
+        hold on;
     end
     treeList = evolveGen(treeList, treeRes, opts);
     population = size(treeList,2);
