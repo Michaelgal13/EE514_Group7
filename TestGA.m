@@ -5,6 +5,7 @@ close all
 simulinkModel = "untitled.slx";
 simTime = 5;
 simFunct = "simFunct";
+costFunction = "costFunction";
 generations = 20;
 population = 5;
 initDepth = 5;
@@ -22,9 +23,17 @@ end
 for i = 1:generations
     treeRes = zeros(size(treeList,2),1);
     for  j = 1:population
-        str = parseTree(treeList(j), simFunct);
+        try
         simOut = sim(simulinkModel, simTime);
+        treeRes(j) = feval(costFunction, simOut);
+        catch
+        fprintf("ERROR: Setting cost to inf\n");
+        treeRes(j) = inf;
+        end
+        %str = parseTree(treeList(j), simFunct);
+        %simOut = sim(simulinkModel, simTime);
         treeRes(j) = costFunction(simOut);
+        fprintf("Currently: %d out of %d\n", (i-1)*population + j, (generations)*population);
     end
     treeList = evolveGen(treeList, treeRes, opts);
     population = size(treeList,2);

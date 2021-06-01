@@ -31,4 +31,4 @@ codegen/
 octave-workspace
 
 # genFiles folder
-genFiles/
+genFiles/*.m
