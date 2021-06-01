@@ -29,6 +29,7 @@ for i = 1:generations
     treeList = evolveGen(treeList, treeRes, opts);
     population = size(treeList,2);
 end
+
 [~,I] = min(treeRes);
 result = treeList(I);
 
