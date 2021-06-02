@@ -7,14 +7,14 @@ simTime = 10;
 t = [0:simTime*1e-4:simTime];
 simFunct = "simFunct";
 costFunction = "costFunction";
-generations = 20;
-population = 10;
+generations = 50;
+population = 20;
 initDepth = 5;
-opts = ["MaxSize", 30, "MutationLoops", 5, "MutationDepth", 8,...
+opts = ["MaxSize", 30, "MutationLoops", 10, "MutationDepth", 8,...
     "NumberMax", 10, "NumberDelims", 0.5, "OperatorSeed", 0.5,...
     "EndNodeSeed", 0.5, ...
     "StatexSeed", 0.25, "StatexdotSeed", 0.25, "StatethetaSeed", 0.25,...
-    "ElitismNumber", 1, "CrossoverNumber", 3, "ReplicationNumber", 1];
+    "ElitismNumber", 1, "CrossoverNumber", 8, "ReplicationNumber", 1];
 endCond = 1;
 
 for i = 1: population
@@ -26,7 +26,7 @@ for i = 1:generations
     for  j = 1:population
         str = parseTree(treeList(j), simFunct);
         timre = timer('TimerFcn', 'set_param(''untitled_pi4'',''SimulationCommand'',''stop'')',... % strcat(' error(''TIMEOUT',string(j),'!'');'),
-            'StartDelay',10);
+            'StartDelay',60);
 %         timre = timer('TimerFcn', ' error(''TIMEOUT!'');',...
 %             'StartDelay',10);
         try
