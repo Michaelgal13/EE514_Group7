@@ -2,7 +2,7 @@ clc
 clear all
 close all
 %%
-simulinkModel = "untitled.slx";
+simulinkModel = "untitled";
 t = 10;
 simFunct = "simFunct";
 costFunction = "costFunction";
@@ -25,8 +25,8 @@ for i = 1:generations
     for  j = 1:population
         err = 0;
         str = parseTree(treeList(j), simFunct);
-        timre = timer('TimerFcn', 'err = 1; error(''TIMEOUT!''); com.mathworks.mde.cmdwin.CmdWinMLIF.getInstance().processKeyFromC(2,67,''C''); com.mathworks.mde.cmdwin.CmdWinMLIF.getInstance().processKeyFromC(2,67,''C''); quit force',...
-            'StartDelay',120);
+        timre = timer('TimerFcn', 'err = 1; set_param(simulinkModel,''SimulationCommand'',''stop'')',...
+            'StartDelay',60);
         try
             start(timre);
             simOut = sim(simulinkModel, t);
