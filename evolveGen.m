@@ -46,9 +46,9 @@ for i = 1: elite
     treeList(i) = sortList(i);
 end
 for i = 1:repNum
-    b = floor(rand^2 * (population + 1));
-    if b < 1
-        b = 1;
+    b = floor(rand^2 * (population) + 1);
+    if b < 2
+        b = 2;
     elseif b > population
         b = population;
     end
