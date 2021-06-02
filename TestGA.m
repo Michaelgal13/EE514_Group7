@@ -4,17 +4,17 @@ close all
 %%
 simulinkModel = "untitled.slx";
 simTime = 10;
-t = [0:simTime/1e4:simTime];
+t = [0:simTime/1e3:simTime];
 simFunct = "simFunct";
 costFunction = "costFunction";
-generations = 10;
-population = 5;
+generations = 20;
+population = 20;
 initDepth = 5;
-opts = ["MaxSize", 30, "MutationLoops", 2, "MutationDepth", 8,...
+opts = ["MaxSize", 30, "MutationLoops", 10, "MutationDepth", 8,...
     "NumberMax", 10, "NumberDelims", 0.5, "OperatorSeed", 0.5,...
     "EndNodeSeed", 0.5, ...
     "StatexSeed", 0.25, "StatexdotSeed", 0.25, "StatethetaSeed", 0.25,...
-    "ElitismNumber", 1, "CrossoverNumber", 1, "ReplicationNumber", 1];
+    "ElitismNumber", 1, "CrossoverNumber", 8, "ReplicationNumber", 1];
 endCond = 1;
 
 for i = 1: population
@@ -48,6 +48,7 @@ for i = 1:generations
     genRes(i) = min(treeRes);
     plot(1:i,genRes);
     xlim([1 generations]);
+%     ylim([0 1]);
     xlabel("Generations");
     ylabel("Minimum Cost");
     drawnow;
@@ -95,3 +96,32 @@ ylabel ('Acutator Effort')
 % xlabel ('Time')
 % ylabel ('Magnitude')
 % legend ({'Position', 'Velocity', 'Angle', 'Angular Velocity', 'Actuator Effort'}, 'Location', 'Best') 
+
+
+%%
+parseTree(result, simFunct);
+simOut = sim("untitled_pi8.slx", t);
+% simOut = sim(simulinkModel, simTime);
+y = feval(costFunction, simOut);
+
+figure(201)
+subplot(2,3,1)
+plot (t,simOut.xnew.Data(:,1)')
+xlabel ('Time')
+ylabel ('Position')
+subplot(2,3,2)
+plot (t,simOut.xnew.Data(:,2)')
+xlabel ('Time')
+ylabel ('Velocity')
+subplot(2,3,3)
+plot (t,simOut.xnew.Data(:,3)')
+xlabel ('Time')
+ylabel ('Angle')
+subplot(2,3,4)
+plot (t,simOut.xnew.Data(:,4)')
+xlabel ('Time')
+ylabel ('Angular Velocity')
+subplot(2,3,5)
+plot (t,simOut.yout)
+xlabel ('Time')
+ylabel ('Acutator Effort')
