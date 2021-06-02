@@ -24,7 +24,7 @@ cost = 0;
 for i=2:length(t)
     cost =  cost + (x(:,i)'*Q*x(:,i) + u(i)'*R*u(i)).*(t(i)-t(i-1));
 end
-
+cost = cost + max(u)*1e-5;
 % figure(201)
 % plot (t,x(1,:))
 % hold on
