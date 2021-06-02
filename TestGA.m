@@ -80,6 +80,7 @@ result = treeList(I);
 
 
 %%
+t = [0:simTime*1e-4:simTime];
 parseTree(result, simFunct);
 simOut = sim('untitled.slx', t);
 % simOut = sim(simulinkModel, simTime);
@@ -117,6 +118,7 @@ ylabel ('Acutator Effort')
 
 
 %%
+t = [0:simTime*1e-4:simTime];
 parseTree(result, simFunct);
 simOut = sim("untitled_pi4.slx", t);
 % simOut = sim(simulinkModel, simTime);
