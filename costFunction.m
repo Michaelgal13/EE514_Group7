@@ -18,12 +18,13 @@ Q = [   1 0 0 0;
         0 1 0 0;
         0 0 1 0;
         0 0 0 1     ];
-R = 1;
+R = 2;
 
 cost = 0;
 for i=2:length(t)
     cost =  cost + (x(:,i)'*Q*x(:,i) + u(i)'*R*u(i)).*(t(i)-t(i-1));
 end
+cost = cost + max(abs(u))*1e-5;
 
 % figure(201)
 % plot (t,x(1,:))
