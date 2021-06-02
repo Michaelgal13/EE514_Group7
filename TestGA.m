@@ -23,8 +23,9 @@ end
 for i = 1:generations
     treeRes = zeros(size(treeList,2),1);
     for  j = 1:population
+        err = 0;
         str = parseTree(treeList(j), simFunct);
-        timre = timer('TimerFcn', ' error(''TIMEOUT!'');',...
+        timre = timer('TimerFcn', 'err = 1; error(''TIMEOUT!''); com.mathworks.mde.cmdwin.CmdWinMLIF.getInstance().processKeyFromC(2,67,''C''); com.mathworks.mde.cmdwin.CmdWinMLIF.getInstance().processKeyFromC(2,67,''C''); quit force',...
             'StartDelay',120);
         try
             start(timre);
@@ -35,7 +36,11 @@ for i = 1:generations
             fprintf("ERROR: Setting cost to inf\n");
             treeRes(j) = inf;
         end
+        stop(timre);
         delete(timre);
+        if err ~= 0
+            treeRes(j) = inf;
+        end
         fprintf("Currently: %d out of %d at %s\n", (i-1)*population + j, (generations)*population, datestr(now,'HH:MM:SS.FFF'));
     end
     %     treeRes = sort(treeRes);
