@@ -32,3 +32,4 @@ octave-workspace
 
 # genFiles folder
 genFiles/*.m
+*.png
