@@ -112,7 +112,7 @@ sgtitle('Genetic Algorithm Results at$$\frac{\pi}{10}$$','interpreter','latex');
 
 %%
 parseTree(result, simFunct);
-simOut = sim("untitled_pi4.slx", t);
+simOut = sim("untitled_pi5.slx", t);
 % simOut = sim(simulinkModel, simTime);
 y = feval(costFunction, simOut);
 
@@ -148,4 +148,4 @@ sgtitle('Genetic Algorithm Results at$$\frac{\pi}{4}$$','interpreter','latex');
 
 
 %%
-save('test4', 'result', 'opts', 'population', 'generations', 'initDepth', 'simulinkModel')
+save('bestTest', 'result', 'opts', 'population', 'generations', 'initDepth', 'simulinkModel')
