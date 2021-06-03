@@ -28,7 +28,7 @@ If simulink model is not found: Add the folder simLink folder to your path in MA
 
 If simFunct is not recognized: Create a folder called genFiles and add it to your path in MATLAB.
 
-## FILES
+## Files:
 The LQR folder holds our LQR simulation function.
 
 The testGA file is the wrapper for our genetic algorithm.
