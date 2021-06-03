@@ -6,7 +6,7 @@ simulinkModel = "untitled";
 t = 10;
 simFunct = "simFunct";
 costFunction = "costFunction";
-generations = 50;
+generations = 100;
 population = 20;
 initDepth = 5;
 opts = ["MaxSize", 40, "MutationLoops", 2, "MutationDepth", 8,...
@@ -148,4 +148,4 @@ sgtitle('Genetic Algorithm Results at$$\frac{\pi}{4}$$','interpreter','latex');
 
 
 %%
-% save('test2', 'result', 'opts', 'population', 'generations', 'initDepth', 'simulinkModel')
+save('test4', 'result', 'opts', 'population', 'generations', 'initDepth', 'simulinkModel')
